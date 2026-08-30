@@ -1,18 +1,14 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  host: 'localhost',
-  port: 5432,
-  database: 'torneos_gimnasia',
-  user: 'app_torneos',
-  password: 'password123',
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  connectionString: process.env.DATABASE_URL, // Lee la URL desde Render
+  ssl: {
+    rejectUnauthorized: false // ⚠️ CRUCIAL: Supabase requiere esto para conexiones externas
+  }
 });
 
 pool.on('connect', () => {
-  console.log('✅ Conectado a PostgreSQL');
+  console.log('✅ Conectado a PostgreSQL (Supabase)');
 });
 
 pool.on('error', (err) => {
