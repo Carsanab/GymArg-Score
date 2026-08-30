@@ -1,17 +1,13 @@
 import axios from 'axios';
 
-const getBaseUrl = () => {
-  const hostname = window.location.hostname;
-  if (hostname === 'localhost' || hostname === '127.0.0.1') {
-    return 'http://localhost:3000/api';
-  }
-  return `http://${hostname}:3000/api`;
-};
+// ✅ Usa la variable de entorno de Vercel para producción. 
+// Si no existe (estás en tu PC), usa localhost como respaldo.
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 const api = axios.create({
-  baseURL: getBaseUrl(),
+  baseURL: API_URL,
   headers: {
-    'Content-Type': 'application/json' // 👈 ESTA LÍNEA ES CLAVE
+    'Content-Type': 'application/json'
   }
 });
 
