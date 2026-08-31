@@ -1,21 +1,22 @@
 const { Pool } = require('pg');
 
-// Forzar uso del pooler de Supabase (puerto 6543) para evitar problemas de IPv6 en Render
 let dbUrl = process.env.DATABASE_URL;
 
-// Si la URL tiene puerto 5432, cambiarla a 6543 (pooler de Supabase)
+// Asegurar que usamos el puerto 6543 (Transaction Pooler)
 if (dbUrl && dbUrl.includes(':5432')) {
   dbUrl = dbUrl.replace(':5432', ':6543');
-  if (!dbUrl.includes('pgbouncer=true')) {
-    dbUrl += '?pgbouncer=true';
-  }
+}
+if (dbUrl && !dbUrl.includes('pgbouncer=true')) {
+  const separator = dbUrl.includes('?') ? '&' : '?';
+  dbUrl += `${separator}pgbouncer=true`;
 }
 
 const pool = new Pool({
   connectionString: dbUrl,
   ssl: {
-    rejectUnauthorized: false // Necesario para Supabase
-  }
+    rejectUnauthorized: false
+  },
+  family: 4 // 🔥 ESTO FUERZA A NODE.JS A USAR IPv4 (SOLUCIÓN CLAVE PARA RENDER)
 });
 
 pool.on('connect', () => {
