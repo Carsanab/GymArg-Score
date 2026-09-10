@@ -1,18 +1,15 @@
 const { Pool } = require('pg');
 
+// ✅ Leer la URL de Supabase desde la variable de entorno
 const pool = new Pool({
-  host: 'localhost',
-  port: 5432,
-  database: 'torneos_gimnasia',
-  user: 'app_torneos',
-  password: 'password123',
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false // Obligatorio para Supabase
+  }
 });
 
 pool.on('connect', () => {
-  console.log('✅ Conectado a PostgreSQL');
+  console.log('✅ Conectado a PostgreSQL (Supabase)');
 });
 
 pool.on('error', (err) => {
