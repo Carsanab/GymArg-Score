@@ -102,7 +102,7 @@ const PantallaPublica = () => {
     return (
       <div style={styles.container}>
         <div style={styles.emptyState}>
-          <h1 style={styles.emptyTitle}>🏆 Club Atlético</h1>
+          <h1 style={styles.emptyTitle}>🏆 Gimnasia Artística</h1>
           <p style={styles.emptyText}>Esperando resultados...</p>
         </div>
       </div>

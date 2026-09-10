@@ -57,7 +57,7 @@ const PantallaJuezIndividual = () => {
     const info = {
       'suelo': { emoji: '🤸', nombre: 'SUELO' },
       'salto': { emoji: '🏃', nombre: 'SALTO' },
-      'vigas': { emoji: '⚖️', nombre: 'VIGAS' },
+      'vigas': { emoji: '⚖️', nombre: 'VIGA' },
       'paralelas': { emoji: '🔗', nombre: 'PARALELAS' }
     };
     return info[aparato] || { emoji: '🏆', nombre: aparato ? aparato.toUpperCase() : 'GENERAL' };
@@ -84,7 +84,7 @@ const PantallaJuezIndividual = () => {
     return (
       <div style={styles.container}>
         <div style={styles.emptyState}>
-          <h1 style={styles.emptyTitle}>🏆 Club Atletico Los Andes</h1>
+          <h1 style={styles.emptyTitle}>🏆 Gimnasia Artística</h1>
           <p style={styles.emptyText}>Esperando evaluaciones del juez...</p>
         </div>
       </div>

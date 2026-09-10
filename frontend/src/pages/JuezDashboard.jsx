@@ -386,7 +386,7 @@ const JuezDashboard = () => {
                     <option value="">-- Seleccionar --</option>
                     <option value="suelo">🤸 Suelo</option>
                     <option value="salto">🏃 Salto</option>
-                    <option value="vigas">⚖️ Vigas</option>
+                    <option value="vigas">⚖️ Viga</option>
                     <option value="paralelas">🔗 Paralelas</option>
                   </select>
                 </div>
